@@ -1,0 +1,25 @@
+<h2>{{ appSettings.title }}</h2>
+Filter: <input type="text" ng-model="nameText.name" />
+<br><br>
+<table class="table table-striped">
+    <tr>
+        <th ng-click="DoSort('name')">Name</th>
+        <th ng-click="DoSort('city')">City</th>
+        <th ng-click="DoSort('orderTotal')">Order Total</th>
+        <th ng-click="DoSort('joined')">Joined</th>
+        <th>View Orders</th>
+    </tr>
+    <tr ng-repeat="person in customers | filter: nameText | orderBy: sortBy:reverse" class="repeat-animation">
+        <td>{{ person.name | uppercase}}</td>
+        <td>{{ person.city | lowercase }}</td>
+        <td>{{ person.orderTotal | currency }}</td>
+        <td>{{ person.joined | date: 'MM-dd-yyyy' }}</td>
+        <td><a href="#/orders/{{ person.id }}">View Orders</a></td>
+    </tr>
+</table>
+<br>
+<span>Total Customers: {{ customers.length }}</span>
+
+<br><br>
+
+<footer>Version: {{ appSettings.version }}</footer>
